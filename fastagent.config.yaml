@@ -1,0 +1,69 @@
+# MCP Capabilities - ADD ELICITATION SUPPORT
+capabilities:
+  elicitation: {}
+
+# Global API Key
+
+mcp:
+  servers:
+    ibkr:
+      command: "uv"
+      args: ["run", "fastmcp", "run", "ibkr_fast_mcp_server.py"]
+    
+    brave_search:
+      command: "uv"
+      args: ["run", "fastmcp", "run", "brave_mcp_server.py"]
+    
+    mcp-python-interpreter:
+      command: "uvx"
+      args: [
+        "mcp-python-interpreter",
+        "--dir",
+        "/home/gpoly/Downloads",
+        "--python-path",
+        "/home/gpoly/Downloads/.venv/bin/python"
+      ]
+      env:
+        MCP_ALLOW_SYSTEM_ACCESS: "0"
+    
+    # filesystem:
+    #   command: "npx"
+    #   args: ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/workspace"]
+    #   env:
+    #     FILESYSTEM_ROOT: "/path/to/workspace"
+    
+    # fetch:
+    #   command: "npx" 
+    #   args: ["-y", "@modelcontextprotocol/server-fetch"]
+    #   env:
+    #     ALLOWED_DOMAINS: "*.example.com,*.wikipedia.org"
+    
+    # github:
+    #   command: "npx"
+    #   args: ["-y", "@modelcontextprotocol/server-github"]
+    #   env:
+    #     GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+
+# Models
+models:
+  default:
+    provider: "anthropic"
+    model: "claude-sonnet-4-20250514"
+  
+  aliases:
+    fast: "claude-haiku-3-20240307"
+    balanced: "claude-sonnet-4-20250514" 
+    powerful: "claude-opus-3-20240229"
+
+# Providers  
+providers:
+  anthropic:
+    base_url: "https://api.anthropic.com"
+
+# Global settings
+settings:
+  default_temperature: 0.7
+  max_retries: 3
+  mcp_timeout: 30
+  debug: false
+  human_input_timeout: 300
