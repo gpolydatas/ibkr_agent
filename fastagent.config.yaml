@@ -11,13 +11,13 @@ mcp:
       command: "uv"
       args: ["run", "fastmcp", "run", "ibkr_fast_mcp_server.py"]
       elicitation:
-        mode: "auto_cancel"  # Reduce token usage
+        mode: "auto_cancel"
     
     brave_search:
       command: "uv"
       args: ["run", "fastmcp", "run", "brave_mcp_server.py"]
       elicitation:
-        mode: "auto_cancel"  # Reduce token usage
+        mode: "auto_cancel"
     
     mcp-python-interpreter:
       command: "uvx"
@@ -31,25 +31,32 @@ mcp:
       env:
         MCP_ALLOW_SYSTEM_ACCESS: "0"
       elicitation:
-        mode: "auto_cancel"  # Reduce token usage
+        mode: "auto_cancel"
     
-    # filesystem:
-    #   command: "npx"
-    #   args: ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/workspace"]
-    #   env:
-    #     FILESYSTEM_ROOT: "/path/to/workspace"
+    neo4j-cypher:
+      command: "docker"
+      args: [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "NEO4J_URL=bolt://host.docker.internal:7687",
+        "-e", "NEO4J_USERNAME=neo4j", 
+        "-e", "NEO4J_PASSWORD=neo4j@openspg",
+        "mcp/neo4j-cypher"
+      ]
+      elicitation:
+        mode: "auto_cancel"
     
-    # fetch:
-    #   command: "npx" 
-    #   args: ["-y", "@modelcontextprotocol/server-fetch"]
-    #   env:
-    #     ALLOWED_DOMAINS: "*.example.com,*.wikipedia.org"
-    
-    # github:
-    #   command: "npx"
-    #   args: ["-y", "@modelcontextprotocol/server-github"]
-    #   env:
-    #     GITHUB_PERSONAL_ACCESS_TOKEN: "${GITHUB_TOKEN}"
+    duckduckgo:
+      command: "docker"
+      args: [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/duckduckgo"
+      ]
+      elicitation:
+        mode: "auto_cancel"
 
 # Models
 models:

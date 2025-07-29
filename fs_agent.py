@@ -83,9 +83,49 @@ fast = FastAgent("IBKR Financial Trading Agent")
    human_input=True
 )
 
+@fast.agent(
+   name="neo4j_analyst",
+   instruction="""
+   You are a graph database analyst with access to Neo4j for relationship analysis and network insights.
+   Use Neo4j to analyze complex relationships in financial data, market networks, and portfolio connections.
+   Your capabilities include:
+   - Creating and querying graph databases for financial networks
+   - Analyzing relationships between stocks, sectors, and market participants
+   - Identifying patterns and clusters in financial data
+   - Building knowledge graphs for investment research
+   - Performing graph-based risk analysis and correlation studies
+   Always explain your Cypher queries and the insights they reveal.
+   """,
+   model="claude-sonnet-4-20250514",
+   servers=["neo4j-cypher", "ibkr", "duckduckgo"],
+   use_history=True,
+   request_params=RequestParams(temperature=0.2),
+   human_input=True
+)
+
+@fast.agent(
+   name="research_analyst",
+   instruction="""
+   You are a financial research analyst with access to comprehensive search capabilities and graph analysis.
+   Combine web search, graph database insights, and market data for deep research.
+   Your capabilities include:
+   - Conducting thorough market research using DuckDuckGo search
+   - Analyzing company relationships and market networks via Neo4j
+   - Cross-referencing multiple data sources for comprehensive analysis
+   - Building research reports with interconnected insights
+   - Identifying market trends and emerging patterns
+   Focus on providing well-researched, multi-source insights with clear citations.
+   """,
+   model="claude-sonnet-4-20250514",
+   servers=["duckduckgo", "neo4j-cypher", "ibkr"],
+   use_history=True,
+   request_params=RequestParams(temperature=0.3),
+   human_input=True
+)
+
 @fast.router(
    name="financial_router",
-   agents=["financial_analyst", "portfolio_manager", "trading_advisor", "python_analyst"],
+   agents=["financial_analyst", "portfolio_manager", "trading_advisor", "python_analyst", "neo4j_analyst", "research_analyst"],
    model="claude-sonnet-4-20250514",
    default=True,
    use_history=False
