@@ -1,0 +1,30 @@
+# Core MCP Agent Framework
+fast-agent-mcp
+
+# FastMCP for building MCP servers
+fastmcp
+
+# Interactive Brokers API
+ibapi
+
+# Data validation and settings
+pydantic
+pydantic-settings
+
+# HTTP and async requests
+aiohttp
+requests
+
+# Anthropic Claude API
+anthropic
+
+# Optional: Additional data analysis libraries for Python agent
+pandas
+numpy
+matplotlib
+seaborn
+yfinance
+
+# Optional: For advanced quantitative analysis
+scipy
+scikit-learn
