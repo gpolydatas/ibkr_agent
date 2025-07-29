@@ -3,16 +3,21 @@ capabilities:
   elicitation: {}
 
 # Global API Key
+api_key: ""
 
 mcp:
   servers:
     ibkr:
       command: "uv"
       args: ["run", "fastmcp", "run", "ibkr_fast_mcp_server.py"]
+      elicitation:
+        mode: "auto_cancel"  # Reduce token usage
     
     brave_search:
       command: "uv"
       args: ["run", "fastmcp", "run", "brave_mcp_server.py"]
+      elicitation:
+        mode: "auto_cancel"  # Reduce token usage
     
     mcp-python-interpreter:
       command: "uvx"
@@ -25,6 +30,8 @@ mcp:
       ]
       env:
         MCP_ALLOW_SYSTEM_ACCESS: "0"
+      elicitation:
+        mode: "auto_cancel"  # Reduce token usage
     
     # filesystem:
     #   command: "npx"

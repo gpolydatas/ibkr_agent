@@ -87,7 +87,8 @@ fast = FastAgent("IBKR Financial Trading Agent")
    name="financial_router",
    agents=["financial_analyst", "portfolio_manager", "trading_advisor", "python_analyst"],
    model="claude-sonnet-4-20250514",
-   default=True
+   default=True,
+   use_history=False
 )
 
 async def main():
