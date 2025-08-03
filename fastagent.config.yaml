@@ -1,0 +1,89 @@
+# MCP Capabilities - ADD ELICITATION SUPPORT
+capabilities:
+  elicitation: {}
+
+# Global API Key
+api_key: ""
+
+mcp:
+  servers:
+    ibkr:
+      command: "uv"
+      args: ["run", "fastmcp", "run", "ibkr_fast_mcp_server.py"]
+      elicitation:
+        mode: "auto_cancel"
+    
+    brave_search:
+      command: "uv"
+      args: ["run", "fastmcp", "run", "brave_mcp_server.py"]
+      elicitation:
+        mode: "auto_cancel"
+    
+    quant_optimization_mcp:
+      command: "uv"
+      args: ["run", "fastmcp", "run", "quant_optimization_mcp.py"]
+      elicitation:
+        mode: "auto_cancel"
+    
+    mcp-python-interpreter:
+      command: "uvx"
+      args: [
+        "mcp-python-interpreter",
+        "--dir",
+        "/home/gpoly/Downloads",
+        "--python-path",
+        "/home/gpoly/Downloads/.venv/bin/python"
+      ]
+      env:
+        MCP_ALLOW_SYSTEM_ACCESS: "0"
+      elicitation:
+        mode: "auto_cancel"
+    
+    neo4j-cypher:
+      command: "docker"
+      args: [
+        "run",
+        "-i",
+        "--rm",
+        "-e", "NEO4J_URL=bolt://host.docker.internal:7687",
+        "-e", "NEO4J_USERNAME=neo4j", 
+        "-e", "NEO4J_PASSWORD=neo4j@openspg",
+        "mcp/neo4j-cypher"
+      ]
+      elicitation:
+        mode: "auto_cancel"
+    
+    duckduckgo:
+      command: "docker"
+      args: [
+        "run",
+        "-i",
+        "--rm",
+        "mcp/duckduckgo"
+      ]
+      elicitation:
+        mode: "auto_cancel"
+
+# Models
+models:
+  default:
+    provider: "anthropic"
+    model: "claude-sonnet-4-20250514"
+  
+  aliases:
+    fast: "claude-haiku-3-20240307"
+    balanced: "claude-sonnet-4-20250514" 
+    powerful: "claude-opus-3-20240229"
+
+# Providers  
+providers:
+  anthropic:
+    base_url: "https://api.anthropic.com"
+
+# Global settings
+settings:
+  default_temperature: 0.7
+  max_retries: 3
+  mcp_timeout: 30
+  debug: false
+  human_input_timeout: 300
