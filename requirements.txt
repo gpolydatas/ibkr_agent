@@ -28,3 +28,4 @@ yfinance
 # Optional: For advanced quantitative analysis
 scipy
 scikit-learn
+mcp-python-interpreter
