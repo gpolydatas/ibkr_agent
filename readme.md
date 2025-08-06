@@ -147,6 +147,7 @@ scipy
 matplotlib
 seaborn
 scikit-learn
+mcp-python-interpreter
 ```
 
 **Install with UV:**
