@@ -47,7 +47,7 @@ mcp:
         "--rm",
         "-e", "NEO4J_URL=bolt://host.docker.internal:7687",
         "-e", "NEO4J_USERNAME=neo4j", 
-        "-e", "NEO4J_PASSWORD=neo4j@openspg",
+        "-e", "NEO4J_PASSWORD=password",
         "mcp/neo4j-cypher"
       ]
       elicitation:
