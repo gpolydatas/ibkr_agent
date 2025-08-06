@@ -145,6 +145,7 @@ numpy
 pandas
 scipy
 matplotlib
+qiskit
 seaborn
 scikit-learn
 mcp-python-interpreter
