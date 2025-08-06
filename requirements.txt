@@ -24,7 +24,7 @@ numpy
 matplotlib
 seaborn
 yfinance
-
+qiskit
 # Optional: For advanced quantitative analysis
 scipy
 scikit-learn
