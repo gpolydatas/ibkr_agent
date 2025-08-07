@@ -146,6 +146,7 @@ pandas
 scipy
 matplotlib
 qiskit
+qiskit-aer
 seaborn
 scikit-learn
 mcp-python-interpreter
